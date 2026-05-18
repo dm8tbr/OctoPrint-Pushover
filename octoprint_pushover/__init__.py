@@ -1,19 +1,21 @@
 # coding=utf-8
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-import os
-import flask
-import json
-import octoprint.plugin
-import octoprint.plugin
-import requests
-from requests.exceptions import HTTPError
 import datetime
+import json
+import os
+import socket
+import threading
+from io import BytesIO
+
+import flask
+import octoprint.plugin
 import octoprint.util
-from io import StringIO, BytesIO
-from PIL import Image
+import requests
 from flask_login import current_user
 from octoprint.util import RepeatedTimer
+from PIL import Image
+from requests.exceptions import HTTPError
 
 __author__ = "Thijs Bekke <thijsbekke@gmail.com>"
 __license__ = 'GNU Affero General Public License http://www.gnu.org/licenses/agpl.html'
@@ -433,7 +435,7 @@ class PushoverPlugin(octoprint.plugin.EventHandlerPlugin,
 			return
 
 		# Does the event exists in the settings ? if not we don't want it
-		if not event in self.get_settings_defaults()["events"]:
+		if event not in self.get_settings_defaults()["events"]:
 			return
 
 		# Only continue when there is a priority
@@ -457,7 +459,6 @@ class PushoverPlugin(octoprint.plugin.EventHandlerPlugin,
 			payload["url"] = url
 		else:
 			# Create an url
-			import socket
 			payload["url"] = "http://%s" % socket.getfqdn()
 
 		if "token" not in payload:
@@ -486,7 +487,7 @@ class PushoverPlugin(octoprint.plugin.EventHandlerPlugin,
 		try:
 			if self._settings.get(["image"]) or ("image" in payload and payload["image"]):
 				files['attachment'] = ("image.jpg", self.image())
-		except Exception as e:
+		except Exception:
 			self._logger.info("Could not load image from url")
 
 		# Multiple try catches so it will always send a message if the image raises an Exception
@@ -525,7 +526,6 @@ class PushoverPlugin(octoprint.plugin.EventHandlerPlugin,
 		"""
 		octoprint.plugin.SettingsPlugin.on_settings_save(self, data)
 		try:
-			import threading
 			thread = threading.Thread(target=self.validate_pushover, args=(self.get_token(), self._settings.get(["user_key"]),))
 			thread.daemon = True
 			thread.start()

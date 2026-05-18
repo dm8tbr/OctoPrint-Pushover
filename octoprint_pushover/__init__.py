@@ -764,6 +764,9 @@ class PushoverPlugin(
     def get_template_configs(self):
         return [dict(type="settings", name="Pushover", custom_bindings=True)]
 
+    def is_template_autoescaped(self):
+        return True
+
     def get_update_information(self):
         return dict(
             pushover=dict(

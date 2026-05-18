@@ -145,7 +145,7 @@
                     <option value="1">{{ _('High Priority') }}</option>
                 </select>
                 {% if value.help is defined %}
-                    <span class="help-inline">{{ value.help }}</span>
+                    <span class="help-inline">{{ value.help|safe }}</span>
                 {% endif %}
             </div>
         </div>
@@ -167,7 +167,7 @@
                         <option value="1">{{ _('High Priority') }}</option>
                     </select>
                     {% if value.help is defined %}
-                        <span class="help-inline">{{ value.help }}</span>
+                        <span class="help-inline">{{ value.help|safe }}</span>
                     {% endif %}
                 </div>
             </div>

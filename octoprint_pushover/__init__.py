@@ -59,6 +59,9 @@ class PushoverPlugin(
     def get_assets(self):
         return {"js": ["js/pushover.js"]}
 
+    def is_api_protected(self):
+        return True
+
     def get_api_commands(self):
         return dict(test=["api_key", "user_key"])
 

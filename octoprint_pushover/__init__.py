@@ -1,5 +1,4 @@
 # coding=utf-8
-from __future__ import absolute_import, division, print_function, unicode_literals
 
 import datetime
 import json
@@ -90,7 +89,7 @@ class PushoverPlugin(
                 self.event_message(payload)
                 return flask.jsonify(dict(success=True))
             except Exception as e:
-                return flask.jsonify(dict(success=False, msg=str(e.message)))
+                return flask.jsonify(dict(success=False, msg=str(e)))
         return flask.make_response("Unknown command", 400)
 
     def validate_pushover(self, api_key, user_key):
@@ -785,7 +784,7 @@ __plugin_name__ = "Pushover"
 __author__ = "Thijs Bekke <thijsbekke@gmail.com>"
 __license__ = "GNU Affero General Public License http://www.gnu.org/licenses/agpl.html"
 __copyright__ = "Released under terms of the AGPLv3 License"
-__plugin_pythoncompat__ = ">=2.7,<4"
+__plugin_pythoncompat__ = ">=3,<4"
 
 
 def __plugin_load__():

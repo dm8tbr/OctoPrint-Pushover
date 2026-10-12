@@ -18,14 +18,14 @@ from requests.exceptions import HTTPError
 
 
 class PushoverPlugin(
-    octoprint.plugin.AssetPlugin,
     octoprint.plugin.EventHandlerPlugin,
     octoprint.plugin.OctoPrintPlugin,
     octoprint.plugin.ProgressPlugin,
-    octoprint.plugin.SettingsPlugin,
-    octoprint.plugin.SimpleApiPlugin,
-    octoprint.plugin.StartupPlugin,
     octoprint.plugin.TemplatePlugin,
+    octoprint.plugin.SimpleApiPlugin,
+    octoprint.plugin.AssetPlugin,
+    octoprint.plugin.SettingsPlugin,
+    octoprint.plugin.StartupPlugin,
 ):
     api_url = "https://api.pushover.net/1"
     m70_cmd = ""
@@ -115,17 +115,23 @@ class PushoverPlugin(
                 },
             )
 
+            if r is not None:
+                response = json.loads(r.content)
+                if response['status'] == 0 and response['errors'] is not None:
+                    self._logger.error("Pushover API request returns status 0. "+str(response['errors']))
+                    raise ValueError(
+                        "error message: %a" % str(response['errors'])
+                    )
+                if response["status"] == 1 and r.status_code == 200:
+                    self._logger.info("Connected to Pushover")
+
+                    return True
+
             if r is not None and not r.status_code == 200:
                 raise ValueError(
                     "error while instantiating Pushover, header %s" % r.status_code
                 )
 
-            response = json.loads(r.content)
-
-            if response["status"] == 1:
-                self._logger.info("Connected to Pushover")
-
-                return True
 
         except Exception as e:
             raise ValueError("error while instantiating Pushover: %s" % str(e))

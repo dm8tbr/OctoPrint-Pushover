@@ -1,6 +1,12 @@
 # OctoPrint-Pushover
 This project is a Pushover plugin for OctoPrint, I wanted to receive notifications on my phone when [Octoprint](https://octoprint.org) finished, paused or gives an error while printing, and e-mail just isn't good enough. So I build a plugin for the app/service that I use, [Pushover](https://pushover.net).
 
+> [!IMPORTANT]
+> This is a fork of the original code by Thijs Bekke to get this Plugin running on OctoPrint 2.0
+> It incorporates the patchset/pull-request from Jacopo Tediosi, who thankfully did *all* the heavy lifting already.
+> I've now taken this combination as a starting point, added some fixes and am adding some minor changes.
+> There is no promise that I will be able to maintain this fork long term.
+
 ## Installing
 
 Install it trought the bundled [Plugin manager](http://docs.octoprint.org/en/master/bundledplugins/pluginmanager.html) or manually by using this url
@@ -81,7 +87,7 @@ G1 X108.789 Y104.770 E4.20140
 
 
 
-### Support my efforts
+### Support Thijs' efforts
 
 This is a fun project for me, and I do my best to support those that have issues with this plugin. If you want you can return the favor and leave me a tip trough [paypal](https://paypal.me/thijsbekke) ! 
 

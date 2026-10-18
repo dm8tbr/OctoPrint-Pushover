@@ -10,6 +10,7 @@ version = "0.3.8+tbr-004"
 description = "Pushes notifications about finished print jobs trough Pushover."
 authors = [
     { name = "Thijs Bekke", email = "thijsbekke@gmail.com" },
+    { name = "Thomas B. Rücker", email = "octoprint@ruecker.fi" },
 ]
 requires-python = ">=3,<4"
 dependencies = [
@@ -23,7 +24,7 @@ dynamic = [
 pushover = "octoprint_pushover"
 
 [project.urls]
-Homepage = "https://github.com/thijsbekke/OctoPrint-Pushover"
+Homepage = "https://github.com/dm8tbr/OctoPrint-Pushover"
 
 [project.optional-dependencies]
 develop = [

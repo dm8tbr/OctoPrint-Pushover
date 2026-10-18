@@ -767,17 +767,17 @@ class PushoverPlugin(
                 displayVersion=self._plugin_version,
                 # version check: github repository
                 type="github_release",
-                user="thijsbekke",
+                user="dm8tbr",
                 repo="OctoPrint-Pushover",
                 current=self._plugin_version,
                 # update method: pip
-                pip="https://github.com/thijsbekke/OctoPrint-Pushover/archive/{target_version}.zip",
+                pip="https://github.com/dm8tbr/OctoPrint-Pushover/archive/{target_version}.zip",
             )
         )
 
 
 __plugin_name__ = "Pushover"
-__author__ = "Thijs Bekke <thijsbekke@gmail.com>"
+__author__ = "Thijs Bekke <thijsbekke@gmail.com>, Thomas B. Rücker <octoprint@ruecker.fi>"
 __license__ = "GNU Affero General Public License http://www.gnu.org/licenses/agpl.html"
 __copyright__ = "Released under terms of the AGPLv3 License"
 __plugin_pythoncompat__ = ">=3,<4"

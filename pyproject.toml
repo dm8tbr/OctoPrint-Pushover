@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "OctoPrint-Pushover"
-version = "0.3.8+tbr-004"
+version = "0.3.8+tbr-005"
 description = "Pushes notifications about finished print jobs trough Pushover."
 authors = [
     { name = "Thijs Bekke", email = "thijsbekke@gmail.com" },

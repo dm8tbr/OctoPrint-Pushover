@@ -20,7 +20,6 @@ from requests.exceptions import HTTPError
 class PushoverPlugin(
     octoprint.plugin.AssetPlugin,
     octoprint.plugin.EventHandlerPlugin,
-    octoprint.plugin.OctoPrintPlugin,
     octoprint.plugin.ProgressPlugin,
     octoprint.plugin.SettingsPlugin,
     octoprint.plugin.SimpleApiPlugin,
